@@ -11,14 +11,18 @@
 
 <body>
     <div id="app">
-        <input v-model="value"  id="input" type="text">
+        <input v-model="value" id="input" type="text">
         <button class="button" @click="add" type="submit">提交</button>
-
-        <li v-for="item in list">{{item}}</li>
-
+        <!-- <li v-for="item in list">{{item}}</li> -->
+        <todo-item :content="item" v-for="item in list"></todo-item>
     </div>
 
     <script>
+        /* 创建全局组件 */
+        Vue.component('TodoItem', {
+            props: ["content"],
+            template: "<li>{{content}}</li>"
+        })
         new Vue({
             el: '#app',
             data: {
@@ -28,7 +32,7 @@
             },
             methods: {
                 add() {
-                    this.list.push(this.value) 
+                    this.list.push(this.value)
                     this.value = ''; //渲染完清空
                 }
             }
