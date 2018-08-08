@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TodoList</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="value"  id="input" type="text">
+        <button class="button" @click="add" type="submit">提交</button>
+
+        <li v-for="item in list">{{item}}</li>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                /* 初始化 */
+                list: [],
+                value: '',
+            },
+            methods: {
+                add() {
+                    this.list.push(this.value) 
+                    this.value = ''; //渲染完清空
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
